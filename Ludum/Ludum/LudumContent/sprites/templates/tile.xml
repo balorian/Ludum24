@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<XnaContent>
+  <Asset Type="CarmineEngine.SpriteTemplateData">
+
+    <Name>tile</Name>
+
+    <!-- grid, frame or sheet-->
+    <LoadType>frame</LoadType>
+
+    <SheetDirectory>sprites/images/tile</SheetDirectory>
+
+    <!-- For grid type loading-->
+    <GridWidth>2</GridWidth>
+    <GridHeight>1</GridHeight>
+
+    <!-- For sheet type loading, if false takes background color to be the color of pixel at (0,0)-->
+    <SpecifyBackground>true</SpecifyBackground>
+
+    <!--For sheet type loading-->
+    <BackgroundColor>FFFFFFFF</BackgroundColor>
+
+    <Animated>false</Animated>
+
+    <!-- x:0 y:0 w:0 h:0 to let SpriteTemplate assign size-->
+    <Size>0 0 64 64</Size>
+    <Offset>0 0</Offset>
+
+    <FrameOrigins></FrameOrigins>
+
+    <Animations>
+      <Item>
+        <Name>IDLE</Name>
+        <Loops>true</Loops>
+        <Frames>0 1</Frames>
+        <Times>150 150</Times>
+      </Item>
+    </Animations>
+
+  </Asset>
+</XnaContent>

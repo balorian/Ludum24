@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual C# Express 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ludum", "Ludum\Ludum\Ludum.csproj", "{B0DFEA9C-1733-430C-91CC-8C966475F96A}"
+EndProject
+Project("{96E2B04D-8817-42C6-938A-82C39BA4D311}") = "LudumContent", "Ludum\LudumContent\LudumContent.contentproj", "{5F92B15F-C660-4C75-A411-2F64B05DBF53}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarmineEngine", "..\Kingdoms\CarmineEngine\CarmineEngine.csproj", "{7DB9C1E8-BCCD-48D6-8752-0A5BBDE2EE6B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B0DFEA9C-1733-430C-91CC-8C966475F96A}.Debug|x86.ActiveCfg = Debug|x86
+		{B0DFEA9C-1733-430C-91CC-8C966475F96A}.Debug|x86.Build.0 = Debug|x86
+		{B0DFEA9C-1733-430C-91CC-8C966475F96A}.Release|x86.ActiveCfg = Release|x86
+		{B0DFEA9C-1733-430C-91CC-8C966475F96A}.Release|x86.Build.0 = Release|x86
+		{5F92B15F-C660-4C75-A411-2F64B05DBF53}.Debug|x86.ActiveCfg = Debug|x86
+		{5F92B15F-C660-4C75-A411-2F64B05DBF53}.Release|x86.ActiveCfg = Release|x86
+		{7DB9C1E8-BCCD-48D6-8752-0A5BBDE2EE6B}.Debug|x86.ActiveCfg = Debug|x86
+		{7DB9C1E8-BCCD-48D6-8752-0A5BBDE2EE6B}.Debug|x86.Build.0 = Debug|x86
+		{7DB9C1E8-BCCD-48D6-8752-0A5BBDE2EE6B}.Release|x86.ActiveCfg = Release|x86
+		{7DB9C1E8-BCCD-48D6-8752-0A5BBDE2EE6B}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

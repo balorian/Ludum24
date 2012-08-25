@@ -1,0 +1,14 @@
+Content\cursor.xnb
+Content\tiles\images\dirt.xnb
+Content\tiles\images\stone.xnb
+Content\sprites\images\proto.xnb
+Content\sprites\images\box.xnb
+Content\sprites\images\slope.xnb
+Content\sprites\images\tile.xnb
+Content\tiles\templates\dirt.xnb
+Content\tiles\templates\stone.xnb
+Content\sprites\templates\proto.xnb
+Content\sprites\templates\box_template.xnb
+Content\sprites\templates\tile.xnb
+Content\sprites\templates\slope.xnb
+Content\default_font.xnb
