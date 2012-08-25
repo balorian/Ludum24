@@ -138,6 +138,20 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="map\test_map.png">
+      <Name>test_map</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="map\test_map_template.xml">
+      <Name>test_map_template</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>PassThroughProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\..\CarmineEngine\CarmineEngine.csproj">
       <Project>{7DB9C1E8-BCCD-48D6-8752-0A5BBDE2EE6B}</Project>
       <Name>CarmineEngine</Name>

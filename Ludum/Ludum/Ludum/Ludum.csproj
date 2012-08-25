@@ -107,6 +107,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Level\Foregound.cs" />
+    <Compile Include="Level\Level.cs" />
+    <Compile Include="Level\Map.cs" />
+    <Compile Include="Level\MapLoader.cs" />
+    <Compile Include="Level\Tile.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
@@ -122,7 +127,8 @@
       <Name>CarmineEngine</Name>
     </ProjectReference>
     <ProjectReference Include="..\LudumContent\LudumContent.contentproj">
-      <Name>LudumContent</Name>
+      <Project>{5F92B15F-C660-4C75-A411-2F64B05DBF53}</Project>
+      <Name>LudumContent %28Content%29</Name>
       <XnaReferenceType>Content</XnaReferenceType>
     </ProjectReference>
   </ItemGroup>
@@ -153,6 +159,7 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\Microsoft.Xna.GameStudio.targets" />
   <!--
