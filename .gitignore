@@ -1,0 +1,15 @@
+# mstest test results
+TestResults
+
+# Windows
+[Tt]humbs.db
+*.DS_Store
+
+# Visual Studio
+*.[Cc]ache
+[Dd]ebug*/
+[Bb]in
+obj
+KingdomsContent
+*.suo
+*.cachefile

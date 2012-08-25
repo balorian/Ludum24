@@ -7,8 +7,10 @@ using Microsoft.Xna.Framework;
 
 namespace Ludum
 {
-    class Player : Actor
+    class Player : Entity
     {
+        public Vector2 Acceleration = Vector2.Zero;
+        public Vector2 Velocity = Vector2.Zero;
         public float MoveAcceleration = 0.005f;
         public float JumpImpulse = 1f;
         public Vector2 MaxSpeed = new Vector2(0.6f , 1f);
@@ -36,13 +38,32 @@ namespace Ludum
             if (Engine.Keyboard.released(Key.D))
             {
                 Acceleration.X = 0;
+                Velocity.X = 0;
             }
             if (Engine.Keyboard.released(Key.A))
             {
                 Acceleration.X = 0;
+                Velocity.X = 0;
             }
 
+            Velocity += Acceleration * (float)Engine.GameTime.ElapsedGameTime.TotalMilliseconds;
+            Vector2 lastPosition = new Vector2(Position.X, Position.Y);
+            Position += Velocity * (float)Engine.GameTime.ElapsedGameTime.TotalMilliseconds;
+
+            foreach (Entity e in World.Entities)
+                if (!e.Equals(this) && collidesWith(e))
+                {
+                    clipUp(e);
+                    Velocity.Y = 0;
+                }
+
+            moveTo((int)Position.X, (int)Position.Y);
+
+            base.update();
+
             Velocity = Vector2.Clamp(Velocity, -MaxSpeed, MaxSpeed);
+
+
 
             base.update();
         }
@@ -50,6 +71,12 @@ namespace Ludum
         public override void draw()
         {
             base.draw();
+        }
+
+        public void clipUp(Entity entity)
+        {
+            while (collidesWith(entity))
+                Position += -Vector2.UnitY;
         }
 
     }
