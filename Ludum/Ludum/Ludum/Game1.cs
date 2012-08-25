@@ -19,9 +19,10 @@ namespace Ludum
         Player player;
 
         TextField field;
-        string text;
+        public static string Text;
 
         Entity[] ground;
+        Entity[] wall;
         Entity slope;
 
         public Game1()
@@ -50,25 +51,30 @@ namespace Ludum
 
             Engine.DefaultFont = Content.Load<SpriteFont>("default_font");
 
-            player = new Player(testScreen, new Rectangle(0, 0, 64, 64), "box");
+            player = new Player(testScreen, new Rectangle(0, 0, 64, 64), "slim_box");
             player.moveTo(64, 64);
-            field = new TextField(testScreen, new Rectangle(0, 0, 600, 600));
+            field = new TextField(testScreen, new Rectangle(0, 0, 1024, 768));
             field.Tint = Color.Red;
             field.DrawShadow = true;
             player.DrawOrder = 100;
 
             ground = new Entity[50];
+            wall = new Entity[50];
 
             for (int i = 0; i < 50; i++)
             {
                 Entity tile = new Entity(testScreen, new Rectangle(0, 0, 64, 64), "tile");
                 tile.moveTo(i*64, 700);
                 ground[i] = tile;
+                Entity wallTile = new Entity(testScreen, new Rectangle(0, 0, 64, 64), "tile");
+                wallTile.moveTo(500, i * 64);
             }
 
             slope = new Entity(testScreen, "slope", "slope");
             slope.moveTo(200, 200);
             slope.UseGeometry = true;
+
+            Text = "";
         }
 
         protected override void UnloadContent()
@@ -81,8 +87,15 @@ namespace Ludum
             if (Engine.Keyboard.pressed(Key.Escape))
                 this.Exit();
 
-            text = player.Velocity.ToString() + "\r\n" + player.Position.ToString();
-            field.Text = text;
+            if (Engine.Keyboard.pressed(Key.R))
+                player.moveTo(64, 64);
+
+            Text += "\r\n";
+            Text += player.Velocity.ToString() + "\r\n" + player.Position.ToString() + "\r\n" + player.Acceleration.ToString();
+
+            field.Text = Text;
+
+            Text = "";
 
             Engine.Update(gameTime);
             base.Update(gameTime);

@@ -5,7 +5,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ludum", "Ludum\Ludum\Ludum.
 EndProject
 Project("{96E2B04D-8817-42C6-938A-82C39BA4D311}") = "LudumContent", "Ludum\LudumContent\LudumContent.contentproj", "{5F92B15F-C660-4C75-A411-2F64B05DBF53}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarmineEngine", "..\Kingdoms\CarmineEngine\CarmineEngine.csproj", "{7DB9C1E8-BCCD-48D6-8752-0A5BBDE2EE6B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarmineEngine", "CarmineEngine\CarmineEngine.csproj", "{7DB9C1E8-BCCD-48D6-8752-0A5BBDE2EE6B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

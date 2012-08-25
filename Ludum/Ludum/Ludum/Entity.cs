@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
+using CarmineEngine;
 
-namespace CarmineEngine
+namespace Ludum
 {
     public enum Side { None, Top, Bottom, Left, Right}
 
@@ -55,7 +56,7 @@ namespace CarmineEngine
         public bool collidesWith(Entity entity)
         {
             if(collideBoxes(entity)){
-                if (!UseGeometry && !entity.UseGeometry)
+                if (!entity.UseGeometry)
                     return true;
                 else
                     return collideGeometries(entity);
@@ -73,28 +74,16 @@ namespace CarmineEngine
 
         bool collideGeometries(Entity entity)
         {
-            Matrix AtoB = BoundingSprite.getMatrix() * Matrix.Invert(entity.BoundingSprite.getMatrix());
-            bool g1 = !UseGeometry;
-            bool g2 = !entity.UseGeometry;
+            Rectangle box1 = new Rectangle((int)Position.X, (int)Position.Y, BoundingBox.Width, BoundingBox.Height);
+            Rectangle box2 = new Rectangle((int)entity.Position.X, (int)entity.Position.Y, entity.BoundingBox.Width, entity.BoundingBox.Height);
+            Rectangle intersect = Rectangle.Intersect(box1, box2);
+            intersect.X -= box2.X;
+            intersect.Y -= box2.Y;
 
-            for (int x = 0; x < BoundingBox.Width; x++)
-            {
-                for (int y = 0; y < BoundingBox.Height; y++)
-                {
-                    Vector2 position = Vector2.Transform(new Vector2(x, y), AtoB);
-                    int X = (int)position.X;
-                    int Y = (int)position.Y;
-                    if(X >= 0  && X < entity.BoundingBox.Width && Y >= 0 && Y < entity.BoundingBox.Height)
-                    {
-                        if (!g1)
-                            g1 =BoundingGeometry[x, y];
-                        if (!g2)
-                            g2 = entity.BoundingGeometry[x, y];
-                        if (g1 && g2)
-                            return true;
-                    }
-                }
-            }
+            for (int x = 0; x < intersect.Width; x++)
+                for (int y = 0; y < intersect.Width; y++)
+                    if (entity.BoundingGeometry[x + intersect.X, y + intersect.Y])
+                        return true;
             return false;
         }
 

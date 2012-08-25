@@ -12,3 +12,5 @@ Content\sprites\templates\box_template.xnb
 Content\sprites\templates\tile.xnb
 Content\sprites\templates\slope.xnb
 Content\default_font.xnb
+Content\sprites\images\slim_box.xnb
+Content\sprites\templates\slim_box.xnb
