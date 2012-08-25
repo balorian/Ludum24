@@ -117,7 +117,7 @@
     <Content Include="GameThumbnail.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Kingdoms\CarmineEngine\CarmineEngine.csproj">
+    <ProjectReference Include="..\..\CarmineEngine\CarmineEngine.csproj">
       <Project>{7DB9C1E8-BCCD-48D6-8752-0A5BBDE2EE6B}</Project>
       <Name>CarmineEngine</Name>
     </ProjectReference>

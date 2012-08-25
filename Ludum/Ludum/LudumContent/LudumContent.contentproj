@@ -49,12 +49,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Kingdoms\CarmineEngine\CarmineEngine.csproj">
-      <Project>{7DB9C1E8-BCCD-48D6-8752-0A5BBDE2EE6B}</Project>
-      <Name>CarmineEngine</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="tiles\images\dirt.png">
       <Name>dirt</Name>
       <Importer>TextureImporter</Importer>
@@ -142,6 +136,12 @@
       <Importer>XmlImporter</Importer>
       <Processor>PassThroughProcessor</Processor>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\CarmineEngine\CarmineEngine.csproj">
+      <Project>{7DB9C1E8-BCCD-48D6-8752-0A5BBDE2EE6B}</Project>
+      <Name>CarmineEngine</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />
   <!--  To modify your build process, add your task inside one of the targets below and uncomment it. 
