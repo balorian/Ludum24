@@ -8,11 +8,11 @@ namespace Ludum
 {
     class Scene : Entity
     {
-        bool[,] CollisionArray;
 
         public Scene(GameScreen screen, string boundingSprite, string sprite) : base(screen, boundingSprite, sprite)
         {
-
+            Sprite.BlockUpdate = true;
+            Sprite.Visible = false;
         }
 
     }

@@ -10,15 +10,21 @@ namespace Ludum
 {
     class Player : Entity
     {
+        public Vector2 Force = Vector2.Zero;
+        public float Drag = World.AirDrag;
+        public Vector2 Gravity = World.Gravity * Vector2.UnitY;
+
         public Vector2 Acceleration = Vector2.Zero;
         public Vector2 Velocity = Vector2.Zero;
         public float MoveAcceleration = 0.005f;
         public float JumpImpulse = 1.5f;
         public Vector2 MaxSpeed = new Vector2(0.6f , 2f);
 
+        public bool onGround;
+
         public Player(GameScreen screen, Rectangle boundingBox, string sprite) : base(screen, boundingBox, sprite) 
         {
-            Acceleration.Y = World.Gravity;
+
         }
 
         public override void update()
@@ -28,23 +34,23 @@ namespace Ludum
 
             if (Engine.Keyboard.down(Key.A))
             {
-                Acceleration.X = -MoveAcceleration;
+                Force.X = -MoveAcceleration;
             }
             if (Engine.Keyboard.down(Key.D))
             {
-                Acceleration.X = MoveAcceleration;
+                Force.X = MoveAcceleration;
             }
 
             if (Engine.Keyboard.released(Key.D))
             {
-                Acceleration.X = 0;
-                Velocity.X = 0;
+                Force.X = 0;
             }
             if (Engine.Keyboard.released(Key.A))
             {
-                Acceleration.X = 0;
-                Velocity.X = 0;
+                Force.X = 0;
             }
+
+            Acceleration = (Force + Gravity + (Drag * -Velocity));
 
             Velocity += Acceleration * (float)Engine.GameTime.ElapsedGameTime.TotalMilliseconds;
             Vector2 lastPosition = Position;

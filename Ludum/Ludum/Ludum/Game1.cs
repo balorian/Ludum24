@@ -23,8 +23,8 @@ namespace Ludum
 
         Entity[] ground;
         Entity[] wall;
-        Entity slope;
-        Entity box;
+
+        Entity[] slope31;
 
         public Game1()
         {
@@ -71,11 +71,14 @@ namespace Ludum
                 wallTile.moveTo(500, i * 64);
             }
 
-            slope = new Entity(testScreen, "slope", "slope");
-            slope.moveTo(200, 200);
-            slope.UseGeometry = true;
+            slope31 = new Entity[3];
 
-            box = new Entity(testScreen, new Rectangle(0, 0, 64, 64), "box");
+            for (int i = 0; i < 3; i++)
+            {
+                Entity tile = new Entity(testScreen, "s_" + (i + 1).ToString(), "s_" + (i + 1).ToString());
+                tile.moveTo(200 + i * 64, 200);
+                tile.UseGeometry = true;
+            }
 
             Text = "";
         }
@@ -93,26 +96,8 @@ namespace Ludum
             if (Engine.Keyboard.pressed(Key.R))
                 player.moveTo(64, 64);
 
-            if (Engine.Keyboard.held(Key.Up))
-            {
-                box.moveTo(box.Position.X, box.Position.Y - 1);
-            }
-            if (Engine.Keyboard.held(Key.Down))
-            {
-                box.moveTo(box.Position.X, box.Position.Y + 1);
-            }
-            if (Engine.Keyboard.held(Key.Left))
-            {
-                box.moveTo(box.Position.X -1 , box.Position.Y);
-            }
-            if (Engine.Keyboard.held(Key.Right))
-            {
-                box.moveTo(box.Position.X + 1, box.Position.Y);
-            }
-
             Text += "\r\n";
-            //Text += player.Velocity.ToString() + "\r\n" + player.Position.ToString() + "\r\n" + player.Acceleration.ToString();
-            Text = box.collidesWith(slope).ToString();
+            Text += player.Velocity.ToString() + "\r\n" + player.Position.ToString() + "\r\n" + player.Acceleration.ToString();
 
             field.Text = Text;
 
