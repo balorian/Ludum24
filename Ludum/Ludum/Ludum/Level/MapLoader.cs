@@ -23,10 +23,10 @@ namespace Ludum.Level
             {new Color(148, 255, 0), TileType.water},
         };
 
-        public Map loadRawMap(MapData mapData, GameScreen parent)
+        public static Map loadRawMap(MapData mapData, GameScreen parent)
         {
             Map map = new Map(mapData.name, parent);
-            Texture2D mapTexture = Engine.Content.Load<Texture2D>("map/" + mapData.mapImage);
+            Texture2D mapTexture = Engine.Content.Load<Texture2D>("levels/maps/" + mapData.mapImage);
             Color[] colors1D = new Color[mapTexture.Width * mapTexture.Height];
             mapTexture.GetData<Color>(colors1D);
             Color[,] rawMap = new Color[mapTexture.Width, mapTexture.Height];
@@ -35,10 +35,17 @@ namespace Ludum.Level
                     rawMap[x, y] = colors1D[x + y * mapTexture.Width];
             decodeMap(map, mapData, rawMap);
 
+            Dictionary<String, SpawnPoint> spawns = new Dictionary<string,SpawnPoint>();
+            foreach(SpawnPoint point in mapData.spawnPoints){
+                spawns.Add(point.name, point);
+            }
+            map.SpawnPoints = spawns;
+            map.LevelDoors = mapData.exitPoints;
+
             return map;
         }
 
-        internal void decodeMap(Map map, MapData mapData, Color[,] rawMap)
+        internal static void decodeMap(Map map, MapData mapData, Color[,] rawMap)
         {
             map.Width = rawMap.GetLength(0);
             map.Height = rawMap.GetLength(1);
@@ -50,14 +57,14 @@ namespace Ludum.Level
                 {
                     TileType type = TileType.none;
                     COLOR_DECODER.TryGetValue(rawMap[x, y], out type);
-                    map.TileMap[x, y] = new Tile(map, type, new Vector2(x * 32, y * 32), mapData.levelTemplate);
+                    map.TileMap[x, y] = new Tile(map, type, new Vector2(x * GameState.TILE_SIZE, y * GameState.TILE_SIZE), mapData.levelTemplate);
                 }
             }
 
             chooseFrames(map);
         }
 
-        public void chooseFrames(Map map)
+        public static void chooseFrames(Map map)
         {
             for (int x = 0; x < map.Width; x++)
                 for (int y = 0; y < map.Height; y++)
@@ -67,7 +74,7 @@ namespace Ludum.Level
         }
 
 
-        public TileType[,] getNeighbors(Map map, int x, int y)
+        public static TileType[,] getNeighbors(Map map, int x, int y)
         {
             TileType[,] result = new TileType[3, 3] { { TileType.none, TileType.none, TileType.none }, { TileType.none, TileType.none, TileType.none }, { TileType.none, TileType.none, TileType.none } };
             Rectangle mapRec = new Rectangle(0, 0, map.Width, map.Height);

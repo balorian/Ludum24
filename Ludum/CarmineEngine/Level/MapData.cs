@@ -13,6 +13,7 @@ namespace CarmineEngine.Level
         public string mapImage;
         public string levelTemplate;
         public List<LevelDoorData> exitPoints;
+        public List<SpawnPoint> spawnPoints;
 
     }
 }

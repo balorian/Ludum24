@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using CarmineEngine;
-using Ludum.Level;
+using CarmineEngine.Level;
+using System.Diagnostics;
 
 namespace Ludum.Level
 {
@@ -12,15 +13,14 @@ namespace Ludum.Level
         private Foregound foreground;
         public int Width;
         public int Height;
-        public const int TILE_SIZE = 32;
         public Tile[,] TileMap;
+
+        public Dictionary<String, SpawnPoint> SpawnPoints;
+        public List<LevelDoorData> LevelDoors;
 
         public Map(String name, GameScreen parent) : base(name, 0, parent)
         {
 
         }
-
-
-        
     }
 }

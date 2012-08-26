@@ -9,6 +9,7 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
+using Ludum.Level;
 
 namespace Ludum
 {
@@ -47,6 +48,9 @@ namespace Ludum
         protected override void LoadContent()
         {
             testScreen = new GameScreen("testScreen");
+            testScreen.AcceptUpdate = false;
+            testScreen.AcceptDraw = false;
+            
             SpriteTemplate.LoadFolder("tiles/templates");
             SpriteTemplate.LoadFolder("sprites/templates");
 
@@ -58,6 +62,10 @@ namespace Ludum
             field.Tint = Color.Red;
             field.DrawShadow = true;
             player.DrawOrder = 100;
+
+            GameState state = new GameState();
+            state.Player = player;
+            state.loadLevels();
 
             ground = new Entity[50];
             wall = new Entity[50];
