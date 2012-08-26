@@ -9,10 +9,10 @@ namespace Ludum.Level
 {
     class Level : GameScreen
     {
-        Map Map;
+        public Map Map;
 
-        public Level(String name)
-            : base(name)
+        public Level(String name, GameScreen state)
+            : base(name, 100, state)
         {
 
         }

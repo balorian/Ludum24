@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<XnaContent>
+  <Asset Type="CarmineEngine.Level.LevelData">
+    <name>The Beginning</name>
+    <map>test_map</map>
+    <start>true</start>
+  </Asset>
+</XnaContent>

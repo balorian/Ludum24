@@ -138,15 +138,15 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="map\test_map.png">
-      <Name>test_map</Name>
+    <Compile Include="levels\maps\testmap_image.png">
+      <Name>testmap_image</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="map\test_map_template.xml">
-      <Name>test_map_template</Name>
+    <Compile Include="levels\maps\test_map.xml">
+      <Name>test_map</Name>
       <Importer>XmlImporter</Importer>
       <Processor>PassThroughProcessor</Processor>
     </Compile>
@@ -156,6 +156,27 @@
       <Project>{7DB9C1E8-BCCD-48D6-8752-0A5BBDE2EE6B}</Project>
       <Name>CarmineEngine</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="levels\level1.xml">
+      <Name>level1</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>PassThroughProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="tiles\images\overworld.png">
+      <Name>overworld</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="tiles\templates\overworld.xml">
+      <Name>overworld</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>PassThroughProcessor</Processor>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />
   <!--  To modify your build process, add your task inside one of the targets below and uncomment it. 

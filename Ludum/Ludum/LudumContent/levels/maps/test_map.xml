@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<XnaContent>
+  <Asset Type="CarmineEngine.Level.MapData">
+    <name>The beginning</name>
+    <mapImage>testmap_image</mapImage>
+    <levelTemplate>overworld</levelTemplate>
+    <exitPoints>
+      <Item>
+        <entryTile>1 1</entryTile>
+        <exitTile>2 2</exitTile>
+        <levelTo>level_2</levelTo>
+      </Item>
+    </exitPoints>
+    <spawnPoints>
+      <Item>
+        <name>start</name>
+        <entryPoint>10 13</entryPoint>
+      </Item>
+    </spawnPoints>
+  </Asset>
+</XnaContent>

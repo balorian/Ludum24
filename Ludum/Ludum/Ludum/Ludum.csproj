@@ -108,6 +108,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Level\Foregound.cs" />
+    <Compile Include="Level\GameState.cs" />
     <Compile Include="Level\Level.cs" />
     <Compile Include="Level\Map.cs" />
     <Compile Include="Level\MapLoader.cs" />
