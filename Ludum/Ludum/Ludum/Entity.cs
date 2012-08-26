@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Diagnostics;
 using Microsoft.Xna.Framework;
 using CarmineEngine;
 
@@ -59,29 +60,28 @@ namespace Ludum
                 if (!entity.UseGeometry)
                     return true;
                 else
-                    return collideGeometries(entity);
+                    return collideGeometries(new Rectangle((int)Position.X, (int)Position.Y, BoundingBox.Width, BoundingBox.Height), entity);
             }
             return false;
 
         }
 
-        bool collideBoxes(Entity entity)
+        public bool collideBoxes(Entity entity)
         {
             Rectangle box1 = new Rectangle((int)Position.X, (int)Position.Y, BoundingBox.Width, BoundingBox.Height);
             Rectangle box2 = new Rectangle((int)entity.Position.X, (int)entity.Position.Y, entity.BoundingBox.Width, entity.BoundingBox.Height);
             return box1.Intersects(box2);
         }
 
-        bool collideGeometries(Entity entity)
+        public bool collideGeometries(Rectangle box1, Entity entity)
         {
-            Rectangle box1 = new Rectangle((int)Position.X, (int)Position.Y, BoundingBox.Width, BoundingBox.Height);
             Rectangle box2 = new Rectangle((int)entity.Position.X, (int)entity.Position.Y, entity.BoundingBox.Width, entity.BoundingBox.Height);
             Rectangle intersect = Rectangle.Intersect(box1, box2);
             intersect.X -= box2.X;
             intersect.Y -= box2.Y;
 
             for (int x = 0; x < intersect.Width; x++)
-                for (int y = 0; y < intersect.Width; y++)
+                for (int y = 0; y < intersect.Height; y++)
                     if (entity.BoundingGeometry[x + intersect.X, y + intersect.Y])
                         return true;
             return false;

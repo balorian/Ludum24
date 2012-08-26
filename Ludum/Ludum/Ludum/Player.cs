@@ -84,8 +84,10 @@ namespace Ludum
             {
                 deltaS -= unitS*step;
                 if (deltaS.Length() < step)
+                {
                     scanning = false;
-
+                    Position += deltaS;
+                }
                 {
                     Position += (unitS * step);
 
@@ -94,34 +96,30 @@ namespace Ludum
                     {
                         foreach(Entity e in collisions)
                         {
-                            if (CheckEdge(Side.Bottom, e))
+                            if (checkEdge(Side.Bottom, e))
                             {
                                 clipUp(e);
-                                scanning = false;
                                 Velocity.Y = 0;
                                 Game1.Text += " BOTTOM";
                                 Debug.WriteLine(" BOTTOM" + Velocity.ToString());
                             }
-                            if (CheckEdge(Side.Top, e))
+                            if (checkEdge(Side.Top, e))
                             {
                                 clipDown(e);
-                                scanning = false;
                                 Velocity.Y = 0;
                                 Game1.Text += " TOP";
                                 Debug.WriteLine(" TOP" + Velocity.ToString());
                             }
-                            if (CheckEdge(Side.Left, e))
+                            if (checkEdge(Side.Left, e))
                             {
                                 clipRight(e);
-                                scanning = false;
                                 Velocity.X = 0;
                                 Game1.Text += " LEFT";
                                 Debug.WriteLine(" LEFT" + Velocity.ToString());
                             }
-                            if (CheckEdge(Side.Right, e))
+                            if (checkEdge(Side.Right, e))
                             {
                                 clipLeft(e);
-                                scanning = false;
                                 Velocity.X = 0;
                                 Game1.Text += " RIGHT";
                                 Debug.WriteLine(" RIGHT" + Velocity.ToString());
@@ -143,54 +141,86 @@ namespace Ludum
 
         public void clipUp(Entity entity)
         {
-            while (collidesWith(entity))
+            while (checkEdge(Side.Bottom, entity))
                 Position += -Vector2.UnitY;
             Debug.WriteLine(Velocity.ToString());
         }
 
         public void clipLeft(Entity entity)
         {
-            while (collidesWith(entity))
+            while (checkEdge(Side.Right, entity))
                 Position += -Vector2.UnitX;
             Debug.WriteLine(Velocity.ToString());
         }
 
         public void clipRight(Entity entity)
         {
-            while (collidesWith(entity))
+            while (checkEdge(Side.Left, entity))
                 Position += Vector2.UnitX;
             Debug.WriteLine(Velocity.ToString());
         }
 
         public void clipDown(Entity entity)
         {
-            while (collidesWith(entity))
+            while (checkEdge(Side.Top, entity))
                 Position += Vector2.UnitY;
             Debug.WriteLine(Velocity.ToString());
         }
 
-        public bool CheckEdge(Side side, Entity entity)
+        public bool checkEdge(Side side, Entity entity)
         {
             switch(side){
                 case Side.Bottom:
                     Rectangle bottom = new Rectangle((int)Position.X+2, (int)Position.Y + BoundingBox.Height - 1, BoundingBox.Width-4, 1);
-                    if (bottom.Intersects(new Rectangle((int)entity.Position.X, (int)entity.Position.Y, entity.BoundingBox.Width, entity.BoundingBox.Height)))
-                        return true;
+                    if (!entity.UseGeometry)
+                    {
+                        if (bottom.Intersects(new Rectangle((int)entity.Position.X, (int)entity.Position.Y, entity.BoundingBox.Width, entity.BoundingBox.Height)))
+                            return true;
+                    }
+                    else
+                    {
+                        if (collideGeometries(bottom, entity))
+                            return true;
+                    }
                     break;
                 case Side.Top:
                     Rectangle top = new Rectangle((int)Position.X+2, (int)Position.Y, BoundingBox.Width-4, 1);
-                    if (top.Intersects(new Rectangle((int)entity.Position.X, (int)entity.Position.Y, entity.BoundingBox.Width, entity.BoundingBox.Height)))
-                        return true;
+                    if (!entity.UseGeometry)
+                    {
+                        if (top.Intersects(new Rectangle((int)entity.Position.X, (int)entity.Position.Y, entity.BoundingBox.Width, entity.BoundingBox.Height)))
+                            return true;
+                    }
+                    else
+                    {
+                        if (collideGeometries(top, entity))
+                            return true;
+                    }
                     break;
                 case Side.Left:
                     Rectangle left = new Rectangle((int)Position.X, (int)Position.Y+2, 1, BoundingBox.Height-4);
-                    if (left.Intersects(new Rectangle((int)entity.Position.X, (int)entity.Position.Y, entity.BoundingBox.Width, entity.BoundingBox.Height)))
-                        return true;
+                    if (!entity.UseGeometry)
+                    {
+                        if (left.Intersects(new Rectangle((int)entity.Position.X, (int)entity.Position.Y, entity.BoundingBox.Width, entity.BoundingBox.Height)))
+                            return true;
+                    }
+                    else
+                    {
+                        if (collideGeometries(left, entity))
+                            return true;
+                    }
                     break;
                 case Side.Right:
-                    Rectangle right = new Rectangle((int)Position.X + BoundingBox.Width - 1, (int)Position.Y+2, 1, BoundingBox.Height-4);
-                    if (right.Intersects(new Rectangle((int)entity.Position.X, (int)entity.Position.Y, entity.BoundingBox.Width, entity.BoundingBox.Height)))
-                        return true;
+                    Rectangle right = new Rectangle((int)Position.X + BoundingBox.Width - 1, (int)Position.Y + 2, 1, BoundingBox.Height - 4);
+                    if (!entity.UseGeometry)
+                    {
+                        if (right.Intersects(new Rectangle((int)entity.Position.X, (int)entity.Position.Y, entity.BoundingBox.Width, entity.BoundingBox.Height)))
+                            return true;
+                    }
+                    else
+                    {
+                        if (collideGeometries(right, entity))
+                            return true;
+                    }
                     break;
             }
             return false;
